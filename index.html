@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwiaciarnia - Stwórz Bukiet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌸 Kwiaciarnia Online</h1>
+            <nav>
+                <a href="index.html" class="active">Stwórz Bukiet</a>
+                <a href="history.html">Historia Zamówień</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="builder-section">
+            <h2>Wybierz Kwiaty</h2>
+            <div id="flowers-container" class="items-grid">
+                <!-- Flowers will be loaded here dynamically -->
+            </div>
+        </div>
+
+        <div class="builder-section">
+            <h2>Dodatki do Bukietu</h2>
+            
+            <div class="extras-group">
+                <h3>Papier Ozdobny</h3>
+                <div id="paper-container" class="items-grid">
+                    <!-- Papers will be loaded here -->
+                </div>
+            </div>
+
+            <div class="extras-group">
+                <h3>Wstążki</h3>
+                <div id="ribbon-container" class="items-grid">
+                    <!-- Ribbons will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="builder-section gift-section">
+            <h2>Wyślij jako Prezent (opcjonalnie)</h2>
+            <label class="checkbox-label">
+                <input type="checkbox" id="gift-checkbox">
+                <span>Chcę wysłać ten bukiet jako prezent</span>
+            </label>
+            
+            <div id="gift-options" class="gift-options hidden">
+                <div class="form-group">
+                    <label for="recipient-name">Imię odbiorcy:</label>
+                    <input type="text" id="recipient-name" placeholder="Jan Kowalski">
+                </div>
+                
+                <div class="form-group">
+                    <label for="recipient-address">Adres dostawy:</label>
+                    <textarea id="recipient-address" rows="3" placeholder="ul. Kwiatowa 5, 00-001 Warszawa"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="greeting-card">Tekst na karcie z życzeniami:</label>
+                    <textarea id="greeting-card" rows="4" placeholder="Napisz swoje życzenia..." maxlength="300"></textarea>
+                    <small class="char-counter"><span id="char-count">0</span>/300</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <div class="summary-card">
+                <h2>Podsumowanie Zamówienia</h2>
+                
+                <div id="summary-content">
+                    <p class="empty-message">Dodaj kwiaty do bukietu, aby zobaczyć podsumowanie</p>
+                </div>
+                
+                <div class="price-total">
+                    <span>Całkowita cena:</span>
+                    <span class="price" id="total-price">0.00 zł</span>
+                </div>
+                
+                <button id="visualize-btn" class="btn btn-primary" disabled>
+                    Wygeneruj Wizualizację
+                </button>
+                
+                <button id="order-btn" class="btn btn-success" disabled>
+                    Złóż Zamówienie
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="visualization-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Wizualizacja Twojego Bukietu</h2>
+            <div id="visualization-container">
+                <div class="loader"></div>
+                <p>Generowanie wizualizacji...</p>
+            </div>
+            <img id="visualization-image" class="hidden" alt="Wizualizacja bukietu">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
