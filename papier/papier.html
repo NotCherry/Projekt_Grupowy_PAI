@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Papier</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">e-bukiet</div>
+  <nav>
+    <a href="#">Strona główna</a>
+    <a href="#">Kwiaty</a>
+    <a href="#">Kontakt</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Wybierz kolor papieru</h1>
+  <div class="papier-container">
+
+    <label class="papier-card">
+      <img src="papier_bialy.png" alt="Biały papier">
+      <div class="papier-name">Biały papier</div>
+      <input type="radio" name="papier" value="Biały papier" data-price="2">
+    </label>
+
+    <label class="papier-card">
+      <img src="papier_rozowy.png" alt="Różowy papier">
+      <div class="papier-name">Różowy papier</div>
+      <input type="radio" name="papier" value="Różowy papier" data-price="2">
+    </label>
+
+    <label class="papier-card">
+      <img src="papier_jasno_brazowy.png" alt="Brązowy papier">
+      <div class="papier-name">Brązowy papier</div>
+      <input type="radio" name="papier" value="Brązowy papier" data-price="2">
+    </label>
+
+    <label class="papier-card">
+      <img src="papier_jasno_niebieski.png" alt="Jasno-niebieski papier">
+      <div class="papier-name">Jasno-niebieski papier</div>
+      <input type="radio" name="papier" value="Jasno-niebieski papier" data-price="2">
+    </label>
+
+    <label class="papier-card">
+      <img src="papier_zolty.png" alt="Żółty papier">
+      <div class="papier-name">Żółty papier</div>
+      <input type="radio" name="papier" value="Żółty papier" data-price="2">
+    </label>
+
+    <label class="papier-card">
+      <img src="papier_zielony.png" alt="Zielony papier">
+      <div class="papier-name">Zielony papier</div>
+      <input type="radio" name="papier" value="Zielony papier" data-price="2">
+    </label>
+
+  </div>
+
+  <div id="selected-info"></div>
+</main>
+
+<footer>
+  <p>© 2025 Kwiaty Bukiety — Wszystkie prawa zastrzeżone.</p>
+  <p>Kontakt: <a href="mailto:info@kwiatybukiety.pl">info@kwiatybukiety.pl</a></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

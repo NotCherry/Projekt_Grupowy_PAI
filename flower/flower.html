@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kwiaty</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">e-bukiet</div>
+        <nav>
+        <a href="#">Strona główna</a>
+        <a href="#">Kwiaty</a>
+        <a href="#">Kontakt</a>
+        </nav>
+</header>
+
+<main>
+  <div class="flower-card" data-price="10">
+    <img src="roza_1.png" alt="Róża">
+    <div class="flower-name">Róża</div>
+    <div class="price">Cena: 10 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+  <div class="flower-card" data-price="5">
+    <img src="gozdzika_1.png" alt="Goździk">
+    <div class="flower-name">Goździk</div>
+    <div class="price">Cena: 5 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+  <div class="flower-card" data-price="6">
+    <img src="gerber.png" alt="Gerbera">
+    <div class="flower-name">Gerbera</div>
+    <div class="price">Cena: 6 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+  
+
+
+  <div class="flower-card" data-price="8">
+    <img src="eustoma.png" alt="Eustoma">
+    <div class="flower-name">Eustoma</div>
+    <div class="price">Cena: 8 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+  <div class="flower-card" data-price="4">
+    <img src="frezja.png" alt="Frezja">
+    <div class="flower-name">Frezja</div>
+    <div class="price">Cena: 4 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+  <div class="flower-card" data-price="1">
+    <img src="gipsowka.png" alt="Gipsówka">
+    <div class="flower-name">Gipsówka</div>
+    <div class="price">Cena: 1 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+
+  <div class="flower-card" data-price="9">
+    <img src="hiacynt.png" alt="Hiacynt">
+    <div class="flower-name">Hiacynt</div>
+    <div class="price">Cena: 9 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+  <div class="flower-card" data-price="15">
+    <img src="hortensja.png" alt="Hortensje">
+    <div class="flower-name">Hortensje</div>
+    <div class="price">Cena: 15 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+
+
+  <div class="flower-card" data-price="6">
+    <img src="hryzantemy.png" alt="Chryzantema">
+    <div class="flower-name">Chryzantema</div>
+    <div class="price">Cena: 6 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+
+  <div class="flower-card" data-price="5">
+    <img src="irys.png" alt="Irys">
+    <div class="flower-name">Irys</div>
+    <div class="price">Cena: 5 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+ 
+
+  <div class="flower-card" data-price="3">
+    <img src="narcyz.png" alt="Narcyz">
+    <div class="flower-name">Narcyz</div>
+    <div class="price">Cena: 3 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+
+  <div class="flower-card" data-price="15">
+    <img src="piwonia.png" alt="Piwonia">
+    <div class="flower-name">Piwonia</div>
+    <div class="price">Cena: 15 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+  <div class="flower-card" data-price="1">
+    <img src="rumianek.png" alt="Rumianek">
+    <div class="flower-name">Rumianek</div>
+    <div class="price">Cena: 1 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+  <div class="flower-card" data-price="7">
+    <img src="slonecznik.png" alt="Słonecznik">
+    <div class="flower-name">Słonecznik</div>
+    <div class="price">Cena: 7 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+
+  <div class="flower-card" data-price="4">
+    <img src="tulipan.png" alt="Tulipan">
+    <div class="flower-name">Tulipan</div>
+    <div class="price">Cena: 4 zł</div>
+    <div class="counter">
+      <button onclick="changeCount(this, -1)">-</button>
+      <span>0</span>
+      <button onclick="changeCount(this, 1)">+</button>
+    </div>
+      <div class="subtotal">Suma: 0 zł</div>
+  </div>
+
+
+</main>
+
+
+<!--SUMA OGOLNA-->
+<div id="total">Łączna suma: 0 zł</div>
+
+ <footer>
+    <p>© 2025 Kwiaty Bukiety — Wszystkie prawa zastrzeżone.</p>
+    <p>Kontakt: <a href="mailto:info@kwiatybukiety.pl">info@kwiatybukiety.pl</a></p>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
