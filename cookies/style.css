@@ -1,0 +1,138 @@
+/*pasek menu (header) */
+header {
+    position:absolute;             
+    top: 0;
+    left: 0;
+    width: 100%;                
+    background-color: #588157;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    box-sizing: border-box;
+    z-index: 1000;              
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header .logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+header nav a:hover {
+    opacity: 0.8;
+}
+
+/* body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    
+    justify-content: center;
+    gap: 20px;
+    padding: 120px 40px 40px; 
+}
+
+
+/*COOKIES*/
+
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #80bb7f;
+ /*To nizej jesli chcesz przezroczyste tło*/
+  /*background: rgba(0, 189, 66, 0.2);
+  backdrop-filter: blur(0.5px);*/
+ 
+  padding: 20px;
+  border-radius: 20px;
+  width: 320px;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.4s;
+}
+
+.cookie-banner.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cookie-content h2 {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cookie-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+/*Buton wyglad*/
+.btn {
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+}
+/*Akceptuje color*/
+.btn.primary {
+  background: #4ad269;
+  color: #000;
+}
+/*Odrzuc color*/
+.btn.secondary {
+  background: rgba(255,255,255,0.4);
+  color: white;
+}
+
+
+
+
+/* info */
+#selected-info {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 25px;
+  font-weight: 500;
+  color: #444;
+}
+
+/* stopka */
+footer {
+    background-color: #588157;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #a3d2ca;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
