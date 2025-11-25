@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Order2</title>
+        <title>Summary</title>
         <meta charset="utf-8">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +12,15 @@
 
             
             body {
-                background-image: url("tlo_chatgpt_3.png");
+                background-image: url("tło3.png");
                 font-family: "Pacifico";
                 display: flex;
                 flex-direction: column;
                 height: 100%;
                 margin: 0;
             }
+
+
 
             header svg {
                 display: block;
@@ -70,7 +72,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 20px;
+                gap: 450px;
                 padding: 0px 40px 0px 40px; 
                 flex: 1;
                 
@@ -88,7 +90,6 @@
                 align-items: center;
                 border: 4px solid rebeccapurple ;
             }
-            
 
 
             .flower-card img {
@@ -98,61 +99,6 @@
                 object-fit: cover;
             }
 
-            .flower-card2 {
-                background: #ce9f9f;
-                border-radius: 15px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                width: 250px;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                border: 4px solid rebeccapurple ;
-            }
-            
-
-
-            .flower-card2 img {
-                margin-top: 20px;
-                width: 60%;
-                height: 200px;
-                object-fit: cover;
-            }
-
-            .flower-card2.disabled {
-                opacity: 0.6;        /* poszarzenie */
-                pointer-events: none; /* zablokowanie kliknięć w całym divie */
-                transition: opacity 0.3s;
-            }
-
-            .flower-card3 {
-                background: #ce9f9f;
-                border-radius: 15px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                width: 250px;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                border: 4px solid rebeccapurple ;
-            }
-            
-
-
-            .flower-card3 img {
-                margin-top: 20px;
-                width: 60%;
-                height: 200px;
-                object-fit: cover;
-            }
-
-            .flower-card3.disabled {
-                opacity: 0.6;        /* poszarzenie */
-                pointer-events: none; /* zablokowanie kliknięć w całym divie */
-                transition: opacity 0.3s;
-            }
-
-
             .flower-name {
                 font-weight: bold;
                 font-size: 18px;
@@ -160,7 +106,6 @@
                 text-transform: uppercase;
                 color: #333;
             }
-
 
             /*licznik */
             .counter {
@@ -190,15 +135,13 @@
                 font-size: 20px;
             }
 
-            .max {
-                padding-bottom: 20px;
-                margin-top: -20px;
-                font-size: 16px;
-            }
-
             .subtotal{
                 padding-bottom: 10px;
                 font-size: 20px;
+            }
+
+            h1{
+                text-align: center;
             }
 
         </style>
@@ -227,11 +170,6 @@
                             e-bukiet
                         </text>
 
-                        <text x="950" y="300" font-size="30px" font-family="Pacifico" fill="white">
-
-                            <tspan x="2250" dy="8">Lista</tspan>
-
-                        </text>
                     </g>
 
 
@@ -243,13 +181,18 @@
 
 
         
-        <main class="foliage-list papers-list ribbons-list">
-            <!--Liście-->
+        <main>
             
-            <!--Papiery-->            
+            <section>
+                <h1>Twoje zamówienie</h1>
+                <button>Generuj</button>
+            </section>
 
-            <!--Wstążki-->         
-           
+            <section>
+                <h1>Obraz</h1>
+                <img src="bialy.png" alt="Bukiet" width="400" height="500" style="border: 2px solid black; ">
+            </section>
+
         </main>
 
 
@@ -301,8 +244,8 @@
 
 
 
-                    <circle cx="1250" cy="280" r="17" stroke="black" stroke-width="2"
-                            style="fill: white; fill-opacity: 0." class="bubble">
+                    <circle cx="1250" cy="280" r="22" stroke="black" stroke-width="2"
+                            style="fill:  rgb(244, 135, 244); fill-opacity: 0." class="bubble">
                     </circle>
 
                     <text x="950" y="280" font-size="25px" font-family="Pacifico">
@@ -330,13 +273,13 @@
 
                     <!--Strzałki--> 
 
-                    <a href="order1_page.html" class="link">
+                    <a href="order2_page.html" class="link">
 
                         <path d="M 29.0,280 L 90,280   M 30,280 L 45,300    M 30,280 L 45,265 " stroke="black" stroke-width="6" fill="none" pointer-events="all" />
 
                     </a>
 
-                    <a href="summary_page.html" class="link">
+                    <a href="" class="link">
 
                         <path d="M 130,280 L 190.9,280   M 190,280 L 170,300   M 190,280 L 170,265" stroke="black" stroke-width="6" fill="none" pointer-events="all"/>
 
@@ -359,9 +302,7 @@
 
 
 
-        <script src="script2.js"></script>
-        <script src="script_backend_load.js"></script>
-
+        <script src="script.js"></script>
 
 
     </body>

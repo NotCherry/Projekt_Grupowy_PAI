@@ -15,17 +15,18 @@ document.addEventListener('DOMContentLoaded', async function() {
             funkcjaLicznika: 'changeCount'
         }),
         listujProdukty({
-            endpoint: '/papers', 
-            className: 'papers-list', 
-            klasaKarty: 'flower-card2', 
-            funkcjaLicznika: 'changeCount2'
-        }),
-        listujProdukty({
             endpoint: '/ribbons', 
             className: 'ribbons-list', 
             klasaKarty: 'flower-card3', 
             funkcjaLicznika: 'changeCount3'
+        }),
+        listujProdukty({
+            endpoint: '/papers', 
+            className: 'papers-list', 
+            klasaKarty: 'flower-card2', 
+            funkcjaLicznika: 'changeCount2'
         })
+        
     ]);
 });
 
