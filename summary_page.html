@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Order1</title>
+        <title>Summary</title>
         <meta charset="utf-8">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +12,15 @@
 
             
             body {
-                background-image: url("tlo_chatgpt_3.png");
+                background-image: url("tło3.png");
                 font-family: "Pacifico";
                 display: flex;
                 flex-direction: column;
                 height: 100%;
                 margin: 0;
             }
+
+
 
             header svg {
                 display: block;
@@ -70,7 +72,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 20px;
+                gap: 450px;
                 padding: 0px 40px 0px 40px; 
                 flex: 1;
                 
@@ -138,6 +140,10 @@
                 font-size: 20px;
             }
 
+            h1{
+                text-align: center;
+            }
+
         </style>
 
     </head>
@@ -164,11 +170,6 @@
                             e-bukiet
                         </text>
 
-                        <text x="950" y="300" font-size="30px" font-family="Pacifico" fill="white">
-
-                            <tspan x="2250" dy="8">Lista</tspan>
-
-                        </text>
                     </g>
 
 
@@ -179,13 +180,31 @@
 
 
 
-        
+      <main>
+        <section>
+            <h1>Twoje zamówienie</h1>
+            
+            <div id="order-summary">
+                <h2>Kwiaty i dodatki:</h2>
+                <ul id="flowers-list"></ul>
+                
+                <h2>Papier:</h2>
+                <ul id="papers-list"></ul>
+                
+                <h2>Wstążka:</h2>
+                <ul id="ribbons-list"></ul>
+                
+                <div id="total-price"></div>
+            </div>
+            
+            <button id="generate-btn" class="gen">Generuj</button>
+        </section>
 
-        
-        <main class="flower-list">
-           
-        </main>
-
+        <section>
+            <h1>Obraz</h1>
+            <img id="bouquet-image" src="bialy.png" alt="Bukiet" width="400" height="500" style="border: 2px solid black;">
+        </section>
+    </main>
 
 
         <footer>
@@ -220,8 +239,8 @@
 
 
 
-                    <circle cx="1100" cy="280" r="17" stroke="black" stroke-width="2"
-                            style="fill: white; fill-opacity: 0." class="bubble">
+                    <circle cx="1100" cy="280" r="22" stroke="black" stroke-width="2"
+                            style="fill:  rgb(244, 135, 244); fill-opacity: 0." class="bubble">
                     </circle>
 
                     <text x="950" y="280" font-size="25px" font-family="Pacifico">
@@ -235,8 +254,8 @@
 
 
 
-                    <circle cx="1250" cy="280" r="17" stroke="black" stroke-width="2"
-                            style="fill: white; fill-opacity: 0." class="bubble">
+                    <circle cx="1250" cy="280" r="22" stroke="black" stroke-width="2"
+                            style="fill:  rgb(244, 135, 244); fill-opacity: 0." class="bubble">
                     </circle>
 
                     <text x="950" y="280" font-size="25px" font-family="Pacifico">
@@ -264,13 +283,13 @@
 
                     <!--Strzałki--> 
 
-                    <a href="home_page.html" class="link">
+                    <a href="order2_page.html" class="link">
 
                         <path d="M 29.0,280 L 90,280   M 30,280 L 45,300    M 30,280 L 45,265 " stroke="black" stroke-width="6" fill="none" pointer-events="all" />
 
                     </a>
 
-                    <a href="order2_page.html" class="link">
+                    <a href="" class="link">
 
                         <path d="M 130,280 L 190.9,280   M 190,280 L 170,300   M 190,280 L 170,265" stroke="black" stroke-width="6" fill="none" pointer-events="all"/>
 
@@ -294,6 +313,7 @@
 
 
         <script src="script.js"></script>
+        <script src="summary.js"></script>
 
 
     </body>
