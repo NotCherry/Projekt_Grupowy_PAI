@@ -38,7 +38,6 @@
                 width: 100%;
                 transform: rotate(180deg); 
                 z-index: 0;
-                pointer-events: none;
                 height: 100%;
             }
 
@@ -123,6 +122,7 @@
                 opacity: 0.6;        /* poszarzenie */
                 pointer-events: none; /* zablokowanie kliknięć w całym divie */
                 transition: opacity 0.3s;
+                z-index: -1;
             }
 
             .flower-card3 {
@@ -201,6 +201,26 @@
                 font-size: 20px;
             }
 
+            .popup {
+                opacity: 0;
+                transition: opacity 0.2s;
+                pointer-events: none;
+                z-index: 9999;
+            }
+            
+            a:hover + .popup {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            svg {
+                overflow: visible;
+            }
+
+            #orderItems {
+                white-space: pre-line;
+            }
+
         </style>
 
     </head>
@@ -227,11 +247,40 @@
                             e-bukiet
                         </text>
 
-                        <text x="950" y="300" font-size="30px" font-family="Pacifico" fill="white">
+                        <a href="#">
+                            <text y="300" font-size="30px" font-family="Pacifico" fill="white">
 
-                            <tspan x="2250" dy="8">Lista</tspan>
+                                <tspan x="2250" dy="8">Lista</tspan>
 
-                        </text>
+                                
+                            </text>
+                            
+                        </a>
+
+                        <g class="popup">
+                            <rect x="2000" y="330" width="370" height="580" fill="white" rx="10" stroke="black" stroke-width="3"/>
+
+                            <text x="2125" y="370" font-size="25px" font-family="Pacifico">
+
+                                <tspan>Zamówienie</tspan>
+
+                            </text>
+
+                            <text x="2010" y="405" font-size="18px" font-family="Pacifico">
+
+                                <tspan id="orderItems"></tspan>
+
+                            </text>
+
+                            <text x="2115" y="900" font-size="22px" font-family="Pacifico">
+
+                                <tspan id="total1">Cała suma: 0 zł</tspan>
+
+                            </text>
+
+                            <path d="M 2000,870 L 2370,870 " stroke="black" stroke-width="3" fill="none" />
+                            
+                        </g>
                     </g>
 
 
@@ -348,7 +397,7 @@
 
                     <text x="650" y="280" font-size="25px" font-family="Pacifico">
 
-                        <tspan id="total">Cała suma: 0 zł</tspan>
+                        <tspan id="total2">Cała suma: 0 zł</tspan>
 
                     </text>
 

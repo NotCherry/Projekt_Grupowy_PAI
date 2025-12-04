@@ -17,6 +17,8 @@ function changeCount(button, delta) {
   //Licznik kwoty dla całości
   updateTotal();
   
+  //Lista - zawartość
+  updateOrderList();
 }
 
 
@@ -62,8 +64,12 @@ function changeCount2(button, delta) {
 
   //Licznik kwoty dla całości
   updateTotal();
+
+  //Lista - zawartość
+  updateOrderList();
   
 }
+
 
 function changeCount3(button, delta) {
   const card = button.closest(".flower-card3");
@@ -107,18 +113,46 @@ function changeCount3(button, delta) {
   //Licznik kwoty dla całości
   updateTotal();
   
+  //Lista - zawartość
+  updateOrderList();
 }
 
 
 //Licznik kwoty dla całości
 function updateTotal() {
-  let total = 0;
+  let total1 = 0;
+  let total2 = 0;
   const cards = document.querySelectorAll(".flower-card, .flower-card2, .flower-card3");
   cards.forEach(card => {
     const price = parseFloat(card.dataset.price);
     const count = parseInt(card.querySelector("span").textContent);
-    total += price * count;
+    total1 += price * count;
+    total2 += price * count;
   });
 
-  document.getElementById("total").textContent = `Cała suma: ${total} zł`;
+  document.getElementById("total1").textContent = `Cała suma: ${total1} zł`;
+  document.getElementById("total2").textContent = `Cała suma: ${total2} zł`;
+}
+
+//Lista - zawartość
+function updateOrderList() {
+    const cards = document.querySelectorAll('.flower-card, .flower-card2, .flower-card3');
+    const items = [];
+
+    cards.forEach(card => {
+        const name = card.querySelector('.flower-name').textContent;
+        const count = parseInt(card.querySelector('span').textContent);
+        const price = card.querySelector('.subtotal').textContent;
+
+        if (count > 0) {
+            items.push(`${name} x${count} = ${price}`);
+        }
+    });
+
+    // wstawianie do SVG
+    const tspan = document.getElementById("orderItems");
+    if (tspan) {
+        tspan.textContent = items.join(",\n");
+        
+    }
 }
