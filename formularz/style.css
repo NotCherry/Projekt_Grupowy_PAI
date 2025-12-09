@@ -1,0 +1,131 @@
+/* Pasek menu (header) */
+header {
+    position: fixed;             
+    top: 0;
+    left: 0;
+    width: 100%;                
+    background-color: #588157;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    box-sizing: border-box;
+    z-index: 1000;              
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header .logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+header nav a:hover {
+    opacity: 0.8;
+}
+
+
+body {
+    background: #faf5f8;
+    font-family: "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 150px 20px 50px;
+}
+
+/* FORMULARZ */
+.flower-form {
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    max-width: 380px;
+    width: 100%;
+    border: 2px solid #ffd7e6;
+}
+
+.flower-form h2 {
+    text-align: center;
+    color: #c94d7b;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.flower-form label {
+    color: #7a4861;
+    margin-bottom: 6px;
+    display: block;
+    font-size: 15px;
+}
+
+/* Pola formularza */
+.flower-form input,
+.flower-form textarea,
+.flower-form select {
+    width: 100%;
+    padding: 10px 2px;
+    margin-bottom: 15px;
+    border: 1.5px solid #f3bdd1;
+    border-radius: 10px;
+    font-size: 15px;
+    background: #fff7fa;
+    outline: none;
+    transition: 0.2s;
+}
+
+.flower-form input:focus,
+.flower-form textarea:focus,
+.flower-form select:focus {
+    border-color: #d45c8c;
+    background: #fff;
+}
+
+/* Przyciski */
+.flower-form button {
+    width: 100%;
+    background: #d45c8c;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.flower-form button:hover {
+    background: #b64473;
+}
+
+/* stopka */
+footer {
+    background-color: #588157;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #a3d2ca;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Formularz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">e-bukiet</div>
+        <nav>
+        <a href="#">Strona główna</a>
+        <a href="#">Kwiaty</a>
+        <a href="#">Kontakt</a>
+        </nav>
+</header>
+<main>
+
+  <form class="flower-form">
+    <h2>Formularz Zamówienia Kwiatów</h2>
+
+    <label>Pseudonim:</label>
+    <input type="text" name="pseudonim" placeholder="Wpisz swój pseudonim" required>
+
+    <label>Kalendarz zamówienia:</label>
+    <input type="date" name="data" required>
+   
+    <label>Godzina zamówienia:</label>
+    <input type="time" name="godzina" required>
+
+    <label>Odbiór zamówienia:</label>
+    <select name="odbior"  required>
+        <option value="">Wybierz opcję</option>
+        <option value="osobisty">Odbiór osobisty (tylko na miejscu)</option>
+    </select>
+
+    <label>Płatność:</label>
+    <select name="platnosc" required>
+        <option value="">Wybierz opcję</option>
+        <option value="gotowka">Gotówka</option>
+        <option value="karta">Karta</option>
+    </select>
+
+
+    <button type="submit">Wyślij Zamówienie</button>
+</form>
+
+
+</main>
+
+
+ <footer>
+    <p>© 2025 Kwiaty Bukiety — Wszystkie prawa zastrzeżone.</p>
+    <p>Kontakt: <a href="mailto:info@kwiatybukiety.pl">info@kwiatybukiety.pl</a></p>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
