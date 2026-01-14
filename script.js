@@ -113,6 +113,8 @@ function changeCount(button, delta) {
   
   updateCardDisplay(card, value);
   updateTotal();
+
+
 }
 
 function changeCount2(button, delta) {
@@ -205,7 +207,13 @@ function updateTotal() {
     }
   });
   
-  const totalEl = document.getElementById("total");
+  const totalEl = document.getElementById("total1");
   if (totalEl) totalEl.textContent = `Cała suma: ${total.toFixed(2)} zł`;
+
+  const totalEl2 = document.getElementById("total2");
+   if (totalEl) totalEl.textContent = `Cała suma: ${total.toFixed(2)} zł`;
+
 }
+
+
 

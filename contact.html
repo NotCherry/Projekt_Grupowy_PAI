@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact</title>
+        <meta charset="utf-8">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+        <style>
+
+            
+            body {
+                background-image: url("tlo_chatgpt_3.png");
+                font-family: "Pacifico";
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                margin: 0;
+            }
+
+            header svg {
+                display: block;
+            }
+           
+
+            footer svg {
+                display: block;
+            }
+
+
+
+            .fala1 {
+                position: relative;  /* lub absolute, jeśli ma być w sekcji */
+                top: 0;
+                left: 0;
+                width: 100%;
+                transform: rotate(180deg); 
+                z-index: 0;
+                height: 100%;
+            }
+
+            .fala2 {
+                position: relative;  /* lub absolute, jeśli ma być w sekcji */
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                z-index: 0;
+                pointer-events: none;
+                height: 100%;
+            }
+
+
+            a.link:hover .bubble {
+                transition: transform 0.3s ease-in-out;
+                transform-origin: center;
+                transform-box: fill-box;
+                transform: scale(1.2);
+            }
+
+           
+            /*Order.html*/
+        
+            /* body */
+            
+
+            main {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                padding: 0px 40px 0px 40px; 
+                flex: 1;
+                
+            }
+
+            /*karta kwiat */
+            .flower-card {
+                background: #ce9f9f;
+                border-radius: 15px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                width: 250px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 4px solid rebeccapurple ;
+            }
+
+
+            .flower-card img {
+                margin-top: 20px;
+                width: 60%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .flower-name {
+                font-weight: bold;
+                font-size: 18px;
+                margin: 10px 0;
+                text-transform: uppercase;
+                color: #333;
+            }
+
+            /*licznik */
+            .counter {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                margin-bottom: 15px;
+            }
+
+            .counter button {
+                width: 30px;
+                height: 30px;
+                border: none;
+                background-color: #e86b5c;
+                color: white;
+                font-size: 20px;
+                border-radius: 5px;
+            }
+
+            .counter button:hover {
+                background-color: #d45647;
+            }
+
+            .price {
+                padding-bottom: 20px;
+                font-size: 20px;
+            }
+
+            .subtotal{
+                padding-bottom: 10px;
+                font-size: 20px;
+            }
+
+
+            .popup {
+                opacity: 0;
+                transition: opacity 0.2s;
+                pointer-events: none;
+            }
+            
+            a:hover + .popup {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            svg {
+                overflow: visible;
+            }
+
+            #orderItems {
+                white-space: pre-line;
+            }
+
+            /*COOKIES*/
+            .cookie-banner {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #80bb7f;
+                /*To nizej jesli chcesz przezroczyste tło*/
+                /*background: rgba(0, 189, 66, 0.2);
+                backdrop-filter: blur(0.5px);*/
+                padding: 20px;
+                border-radius: 20px;
+                width: 320px;
+                color: white;
+                font-family: Arial, sans-serif;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                opacity: 0;
+                transform: translateY(40px);
+                transition: 0.4s;
+                z-index: 1;
+            }
+
+            .cookie-banner.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .cookie-content h2 {
+                margin-top: 0;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .cookie-actions {
+                margin-top: 15px;
+                display: flex;
+                gap: 10px;
+            }
+
+            /*Buton wyglad*/
+            .btn {
+                padding: 10px 16px;
+                border-radius: 12px;
+                cursor: pointer;
+                font-weight: 600;
+                border: none;
+            }
+
+            /*Akceptuje color*/
+            .btn.primary {
+                background: #4ad269;
+                color: #000;
+            }
+
+            /*Odrzuc color*/
+            .btn.secondary {
+                background: rgba(255,255,255,0.4);
+                color: white;
+            }
+
+
+
+            
+            /* kontakt page */
+            .contact-page {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 50px;
+                max-width: 1100px;
+                width: 100%;
+            }
+
+
+            .contact-left h1 {
+                color: #105e1f;
+                margin-bottom: 15px;
+            }
+
+
+            .contact-desc {
+                color: black;
+                margin-bottom: 30px;
+            }
+
+
+            .contact-block {
+                margin-bottom: 25px;
+            }
+
+
+            .contact-block h3 {
+                color: #105e1f;
+                margin-bottom: 8px;
+            }
+
+
+            .contact-block p {
+                margin: 4px 0;
+                font-size: 14px;
+            }
+
+
+            .contact-block a {
+                color: black;
+                text-decoration: none;
+            }
+
+
+            .contact-right {
+                background:  #ce9f9f;
+                padding: 35px;
+                border-radius: 12px;
+                border: 4px solid rebeccapurple;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            }
+
+             .contact-left {
+                background: #ce9f9f;
+                padding: 35px;
+                border-radius: 12px;
+                border: 4px solid rebeccapurple;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            }
+
+
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+            }
+
+
+            .contact-form input,
+            .contact-form textarea {
+                border-radius: 10px;
+                border: 2.5px solid #c06486;
+                padding: 10px 5px;
+                margin-bottom: 20px;
+                font-size: 14px;
+                outline: none;
+            }
+
+
+            .contact-form textarea {
+                resize: none;
+                height: 100px;
+            }
+
+
+            .contact-form button {
+                background:  #e86b5c;
+                color: white;
+                border: none;
+                padding: 12px;
+                border-radius: 6px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+
+
+            .contact-form button:hover {
+                background:  #b64473;
+            }
+
+            
+            /* mniej ekran */
+            @media (max-width: 900px) {
+                .contact-page {
+                    grid-template-columns: 1fr;
+                }
+
+                .contact-info-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+
+        <header>
+                    
+            <section class="fala1">
+                <svg viewBox="0 100 1440 220" width="100%" height="auto" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+                    <path   d="M 0, 224   C 220,120 310,400 560,250
+                                        C 820,75 960,380 1180,200 
+                                        C 1350,68 1820,468 1440,224 
+
+                                        L 1440,620 L 0,620Z" 
+
+                            fill="rebeccapurple" stroke="blue" stroke-width="0" >
+
+                    </path>
+
+                    <g transform="rotate(180,1190,280)">
+
+                        <text x="975" y="335" fill="white" font-size="65px" font-family="Pacifico", cursive>
+                            e-bukiet
+                        </text>
+
+                        <a href="#">
+                            <text x="1590" y="315" fill="white" font-size="30px" font-family="Pacifico", cursive>
+                                Kontakt
+                            </text>
+                        </a>
+
+                    
+
+                        
+                    
+                    </g>
+
+                </svg>
+
+                
+            </section>
+        </header>
+
+
+        <main>
+            <section class="contact-page">
+
+                <div class="contact-left">
+
+                    <h1>Skontaktuj się z nami</h1>
+
+                    <p class="contact-desc">
+                    Napisz do nas lub zadzwoń - chętnie pomożemy dobrać idealny bukiet
+                    i ustalić termin dostawy.
+                    </p>
+
+                    <div class="contact-info-grid">
+
+                        <div class="contact-block">
+                            <h3>Kontakt</h3>
+                            <p>📧 <a href="mailto:info@kwiatybukiety.pl">info@kwiatybukiety.pl</a></p>
+                            <p>📞 +48 111 222 333</p>
+                            <p>🕘 Pon-Pt: 8:00-16:00</p>
+                        </div>
+
+                        <div class="contact-block">
+                            <h3>Dane firmy</h3>
+                            <p>e-bukiet</p>
+                            <p>ul. Kwiatowa 12</p>
+                            <p>00-100 Warszawa</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-right">
+                    <form class="contact-form">
+                        <input type="text" placeholder="Imię" required>
+                        <input type="email" placeholder="Adres e-mail" required>
+                        <input type="tel" placeholder="Numer telefonu">
+                        <textarea placeholder="Wiadomość"></textarea>
+
+                        <button type="submit">Wyślij wiadomość</button>
+                    </form>
+                </div>
+
+            </section>          
+        </main>
+
+        
+
+        <footer>
+            <section class="fala2">
+                <svg viewBox="0 100 1440 220" width="100%" height="auto" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+                    <path   d="M 0, 224   C 220,120 310,400 560,250
+                                        C 820,75 960,380 1180,200 
+                                        C 1350,68 1820,468 1440,224 
+
+                                        L 1440,620 L 0,620Z" 
+
+                            fill="rebeccapurple" stroke="blue" stroke-width="0" >
+
+                    </path>
+
+
+
+
+
+                    <!--Strzałki--> 
+
+                    <a href="javascript:history.back()" class="link">
+
+                        <path d="M 70,280 L 140,280   M 70,280 L 85,300    M 70,280 L 85,265 " stroke="black" stroke-width="6" fill="none" pointer-events="all" />
+
+                    </a>
+
+                 
+
+                   
+
+                </svg>
+            </section>
+        </footer>
+
+    </body>
+
+</html>
+

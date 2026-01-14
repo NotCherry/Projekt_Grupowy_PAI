@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Summary</title>
+        <title>Form2</title>
         <meta charset="utf-8">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,6 +143,65 @@
                 text-align: center;
             }
 
+            /* FORMULARZ */
+            .flower-form {
+                background: #ce9f9f;
+                padding: 0px 50px 15px 50px;
+                border-radius: 16px;
+                max-width: 380px;
+                width: 100%;
+                border: 4px solid rebeccapurple;
+                margin-top: -45px;
+                margin-bottom: -45px;
+
+            }
+
+
+            .flower-form label {
+                margin-bottom: 6px;
+                display: block;
+                font-size: 20px;
+            }
+
+            /* Pola formularza */
+            .flower-form input,
+            .flower-form textarea,
+            .flower-form select {
+                width: 100%;
+                padding: 10px 2px;
+                margin-bottom: 15px;
+                border: 2.5px solid #c06486;
+                border-radius: 10px;
+                font-size: 15px;
+                background: #fff7fa;
+                outline: none;
+                transition: 0.2s;
+            }
+
+            .flower-form input:focus,
+            .flower-form textarea:focus,
+            .flower-form select:focus {
+                border-color: #d45c8c;
+                background: #fff;
+            }
+
+            /* Przyciski */
+            .flower-form button {
+                width: 100%;
+                background-color: #e86b5c;
+                color: white;
+                padding: 12px;
+                font-size: 16px;
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+
+            .flower-form button:hover {
+                background: #b64473;
+            }
+
         </style>
 
     </head>
@@ -185,31 +244,40 @@
 
 
 
-      <main>
-        <section>
-            <h1>Twoje zamówienie</h1>
+        
+        <main>
             
-            <div id="order-summary">
-                <h2>Kwiaty i dodatki:</h2>
-                <ul id="flowers-list"></ul>
-                
-                <h2>Papier:</h2>
-                <ul id="papers-list"></ul>
-                
-                <h2>Wstążka:</h2>
-                <ul id="ribbons-list"></ul>
-                
-                <div id="total-price"></div>
-            </div>
-            
-            <button id="generate-btn" class="gen">Generuj</button>
-        </section>
+            <form class="flower-form" id="order-form">
+            <h1>Formularz Zamówienia</h1>
 
-        <section>
-            <h1>Obraz</h1>
-            <img id="bouquet-image" src="bialy.png" alt="Bukiet" width="400" height="500" style="border: 2px solid black;">
-        </section>
-    </main>
+            <label>Pseudonim:</label>
+            <input type="text" name="pseudonim" placeholder="Wpisz swój pseudonim" required>
+
+            <label>Kalendarz zamówienia:</label>
+            <input type="date" name="data" id="date-picker" required>
+        
+            <label>Godzina zamówienia:</label>
+            <input type="time" name="godzina" id="time-picker" required>
+
+            <label>Odbiór zamówienia:</label>
+            <select name="odbior"  required>
+                <option value="">Wybierz opcję</option>
+                <option value="osobisty">Odbiór osobisty (tylko na miejscu)</option>
+            </select>
+
+            <label>Płatność:</label>
+            <select name="platnosc" required>
+                <option value="">Wybierz opcję</option>
+                <option value="gotowka">Gotówka</option>
+                <option value="karta">Karta</option>
+            </select>
+
+            <div class="form-note" id="form-note" aria-live="polite"></div>
+
+            <button type="submit">Wyślij Zamówienie</button>
+
+        </main>
+
 
 
         <footer>
@@ -229,33 +297,7 @@
 
 
 
-                    <circle cx="950" cy="280" r="22" stroke="black" stroke-width="2"
-                            style="fill: rgb(244, 135, 244); fill-opacity: 0." class="bubble">
-                    </circle>
-
-                    <text x="950" y="280" font-size="25px" font-family="Pacifico">
-
-                        <tspan x="945" dy="8">1</tspan>
-
-                    </text>
-
-                    <path d="M 980,290 L 1070,290 " stroke="black" stroke-width="3" fill="none" />
-
-
-
-
-                    <circle cx="1100" cy="280" r="22" stroke="black" stroke-width="2"
-                            style="fill:  rgb(244, 135, 244); fill-opacity: 0." class="bubble">
-                    </circle>
-
-                    <text x="950" y="280" font-size="25px" font-family="Pacifico">
-
-                        <tspan x="1093" dy="8">2</tspan>
-
-                    </text>
-
-                    <path d="M 1130,290 L 1220,290 " stroke="black" stroke-width="3" fill="none" />
-
+                 
 
 
 
@@ -265,7 +307,7 @@
 
                     <text x="950" y="280" font-size="25px" font-family="Pacifico">
 
-                        <tspan x="1244" dy="8">3</tspan>
+                        <tspan x="1244" dy="8">1</tspan>
 
                     </text>
 
@@ -274,32 +316,25 @@
 
 
 
-                    <circle cx="1400" cy="280" r="17" stroke="black" stroke-width="2"
-                            style="fill: white; fill-opacity: 0." class="bubble">
+                    <circle cx="1400" cy="280" r="22" stroke="black" stroke-width="2"
+                            style="fill:  rgb(244, 135, 244); fill-opacity: 0." class="bubble">
                     </circle>
 
                     <text x="950" y="280" font-size="25px" font-family="Pacifico">
 
-                        <tspan x="1393" dy="8">4</tspan>
+                        <tspan x="1393" dy="8">2</tspan>
 
                     </text>
 
-                    <path d="M 980,290 L 1070,290 " stroke="black" stroke-width="3" fill="none" />
 
                     <!--Strzałki--> 
 
-                    <a href="order2_page.html" class="link">
+                    <a href="summary2_page.html" class="link">
 
                         <path d="M 29.0,280 L 90,280   M 30,280 L 45,300    M 30,280 L 45,265 " stroke="black" stroke-width="6" fill="none" pointer-events="all" />
 
                     </a>
-
-                    <a href="form_page.html" class="link">
-
-                        <path d="M 130,280 L 190.9,280   M 190,280 L 170,300   M 190,280 L 170,265" stroke="black" stroke-width="6" fill="none" pointer-events="all"/>
-
-                    </a>
-
+                    
                     <rect x="618" y="243" height="50" width="240" stroke="black" stroke-width="2" rx="10" ry="10"
                         style="fill: white;">
                     </rect>
@@ -315,10 +350,7 @@
         </footer>
 
 
-
-
-        <script src="script.js"></script>
-        <script src="summary.js"></script>
+        <script src="formularz.js"></script>
 
 
     </body>
