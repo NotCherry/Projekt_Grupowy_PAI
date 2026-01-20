@@ -210,19 +210,38 @@
 
         
         <main>
-            
             <section class="background">
                 <h1>Twoje zamówienie</h1>
-                <button class="gen">Losuj</button>
-                <button class="gen">Generuj</button>
+                
+                <div class="losuj-buttons">
+
+                    <button onclick="losujBukiet(7)" class="losuj gen">7</button>
+                    <button onclick="losujBukiet(14)" class="losuj gen">14</button>
+                    <button onclick="losujBukiet(21)" class="losuj gen">21</button>
+                </div>
+                
+                <div id="order-summary">
+                    <h2>Kwiaty i dodatki:</h2>
+                    <ul id="flowers-list"></ul>
+                    
+                    <h2>Papier:</h2>
+                    <ul id="papers-list"></ul>
+                    
+                    <h2>Wstążka:</h2>
+                    <ul id="ribbons-list"></ul>
+                    
+                    <div id="total-price"></div>
+                </div>
+                
+                <button onclick="generujWizualizacje()" class="gen">Generuj</button>
             </section>
 
             <section class="background">
                 <h1>Obraz</h1>
-                <img src="bialy.png" alt="Twój obraz bukietu" width="400" height="500" style="border: 2px solid black; ">
+                <img id="bouquet-image" src="bialy.png" alt="Twój obraz bukietu" width="400" height="500" style="border: 2px solid black;">
             </section>
-
         </main>
+
 
 
 
@@ -300,7 +319,8 @@
                 </svg>
             </section>
         </footer>
-
+        <script src="script.js"></script>
+        <script src="summary.js"></script>
     </body>
 
 </html>
