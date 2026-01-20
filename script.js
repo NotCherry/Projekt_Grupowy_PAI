@@ -15,25 +15,40 @@ const STORAGE_KEY = 'bouquetState';
  * @return {Object} Stan zawierający kwiaty, papiery, wstążki i ceny
  */
 function loadState() {
-  try {
-    const json = localStorage.getItem(STORAGE_KEY);
-    return json ? JSON.parse(json) : { 
-      flowers: {}, 
-      papers: {}, 
-      ribbons: {},
-      prices: {}
-    };
-  } catch (e) {
-    console.error("LocalStorage error", e);
-    return { flowers: {}, papers: {}, ribbons: {}, prices: {} };
-  }
+    try {
+        const json = localStorage.getItem(STORAGE_KEY);
+        const loaded = json ? JSON.parse(json) : {};
+        
+        return {
+            flowers: loaded.flowers || {},
+            papers: loaded.papers || {},
+            ribbons: loaded.ribbons || {},
+            prices: loaded.prices || {},
+            flowersNames: loaded.flowersNames || {},
+            papersNames: loaded.papersNames || {},
+            ribbonsNames: loaded.ribbonsNames || {}
+        };
+    } catch (e) {
+        console.error("LocalStorage error", e);
+        return { 
+            flowers: {}, papers: {}, ribbons: {}, 
+            prices: {}, flowersNames: {}, papersNames: {}, ribbonsNames: {}
+        };
+    }
 }
+
 
 /**
  * @brief Zapisuje aktualny stan do localStorage
  */
 function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+/**
+ * @brief Czyści aktualny stan w localStorage
+ */
+function clearState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(""));
 }
 
 /** @brief Globalny stan aplikacji */
@@ -103,9 +118,12 @@ async function listujProdukty({endpoint, className, klasaKarty, funkcjaLicznika}
         const odpowiedz = await fetch(backendUrl+endpoint);
         if (!odpowiedz.ok) throw new Error(`Status: ${odpowiedz.status}`);
         const produkty = await odpowiedz.json();
+
         
         produkty.forEach(produkt => {
+            if (!state.prices) state.prices = {};
             state.prices[produkt.id] = produkt.price;
+
 
             if (klasaKarty === 'flower-card') {
                 state.flowersNames = state.flowersNames || {};
@@ -262,33 +280,75 @@ function restoreCategoryView(cardClass, stateCategory) {
 
 /**
  * @brief Oblicza i wyświetla całkowitą cenę zamówienia
+ * @details Iteruje przez flowers, papers i ribbons, mnoży ilości przez ceny i aktualizuje UI
  */
 function updateTotal() {
-  let total = 0;
-  
-  Object.entries(state.flowers).forEach(([id, qty]) => {
-    if (qty > 0 && state.prices[id]) {
-      total += state.prices[id] * qty;
+    // Ensure state properties exist to prevent undefined errors
+    const flowers = state.flowers || {};
+    const papers = state.papers || {};
+    const ribbons = state.ribbons || {};
+    const prices = state.prices || {};
+    
+    let total = 0;
+    
+    Object.entries(flowers).forEach(([id, qty]) => {
+        if (qty > 0 && prices[id]) {
+            total += prices[id] * qty;
+        }
+    });
+    
+    Object.entries(papers).forEach(([id, qty]) => {
+        if (qty > 0 && prices[id]) {
+            total += prices[id] * qty;  // qty is 0 or 1
+        }
+    });
+    
+    Object.entries(ribbons).forEach(([id, qty]) => {
+        if (qty > 0 && prices[id]) {
+            total += prices[id] * qty;  // qty is 0 or 1
+        }
+    });
+    
+    const totalEl = document.getElementById("total1");
+    if (totalEl) {
+        totalEl.textContent = `Cała suma: ${total.toFixed(2)} zł`;
     }
-  });
-  
-  Object.entries(state.papers).forEach(([id, qty]) => {
-    if (qty > 0 && state.prices[id]) {
-      total += state.prices[id] * qty;
+    
+    const totalEl2 = document.getElementById("total2");
+    if (totalEl2) {
+        totalEl2.textContent = `Cała suma: ${total.toFixed(2)} zł`;
     }
-  });
-  
-  Object.entries(state.ribbons).forEach(([id, qty]) => {
-    if (qty > 0 && state.prices[id]) {
-      total += state.prices[id] * qty;
+    const totalEl3 = document.getElementById("total3");
+    if (totalEl3) {
+        totalEl3.textContent = `Cała suma: ${total.toFixed(2)} zł`;
     }
-  });
-  
-  const totalEl = document.getElementById("total1");
-  if (totalEl) totalEl.textContent = `Cała suma: ${total.toFixed(2)} zł`;
+    
+    console.log('Total updated:', { total, flowersCount: Object.keys(flowers).length, pricesCount: Object.keys(prices).length });
+}
 
-  const totalEl2 = document.getElementById("total2");
-  if (totalEl2) totalEl2.textContent = `Cała suma: ${total.toFixed(2)} zł`;
+/**
+ * @brief Czyści koszyk po złożeniu zamówienia
+ * @details Resetuje state i UI do stanu początkowego
+ */
+function clearBasket() {
+    state = {
+        flowers: {},
+        papers: {},
+        ribbons: {},
+        prices: {},
+        flowersNames: {},
+        papersNames: {},
+        ribbonsNames: {}
+    };
+    
+    saveState();
+    
+    restoreCounters();
+    updateTotal();
+    renderKoszyk();
+    aktualizujListeZamowienia();
+    
+    console.log('Koszyk wyczyszczony');
 }
 
 /**
@@ -521,9 +581,16 @@ function aktualizujListeZamowienia() {
  * @details Ładuje produkty i przywraca stan z localStorage
  */
 document.addEventListener('DOMContentLoaded', async function() {
-    const hasFlowerList = document.getElementsByClassName('flower-list')[0];
+    console.log('Inicjalizacja aplikacji kwiaciarni...');
     
-    if (hasFlowerList) {
+    // Ensure state.prices always exists
+    state.prices = state.prices || {};
+    
+    const hasFlowerList = document.getElementsByClassName('flower-list')[0];
+    const hasFoliageList = document.getElementsByClassName('foliage-list')[0];
+    
+    if (hasFlowerList || hasFoliageList) {
+        // Wait for ALL listujProdukty calls to complete
         await Promise.all([
             listujProdukty({
                 endpoint: '/flowers', 
@@ -550,14 +617,16 @@ document.addEventListener('DOMContentLoaded', async function() {
                 funkcjaLicznika: 'changeCount2'
             })
         ]);
+        
+        state = loadState();
         restoreCounters();
     }
     
     await ladujProdukty();
-    state = loadState();
     aktualizujListeZamowienia();
     renderKoszyk();
 });
+
 
 /**
  * @brief Obsługa formularza zamówienia
@@ -650,6 +719,8 @@ if (orderForm) {
             }
 
             form.reset();
+
+            clearBasket();
         } catch (err) {
             const note = document.getElementById('form-note');
             if (note) {
@@ -735,6 +806,10 @@ async function generujWizualizacje() {
         console.error('Błąd:', err);
         alert(`Błąd generowania: ${err.message}`);
     }
+}
+
+window.onload = function() {
+    updateTotal();
 }
 
 /** @brief Eksport funkcji do globalnego scope */

@@ -218,6 +218,7 @@ function setupGenerateButton() {
                 const err = await resp.json();
                 alert(`Błąd: ${err.detail || 'Nieznany błąd'}`);
             }
+            clearState();
         } catch (e) {
             console.error(e);
             alert("Błąd połączenia z serwerem.");
