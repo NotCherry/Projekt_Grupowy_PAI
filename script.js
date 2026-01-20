@@ -265,12 +265,10 @@ function renderKoszyk() {
     const textEl = document.getElementById("orderItems");
     if (!textEl) return;
 
-    // Usuń stare <tspan>
     while (textEl.firstChild) textEl.removeChild(textEl.firstChild);
 
     const lista = [];
 
-    // odczyt z state wraz z nazwami produktów
     Object.entries(state.flowers).forEach(([id, qty]) => {
         if (qty > 0 && state.prices[id]) {
             lista.push({ 
@@ -303,7 +301,6 @@ function renderKoszyk() {
     });
 
 
-    // Dodanie <tspan> do SVG
     lista.forEach((p, i) => {
         const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
         tspan.setAttribute('x', '2010');          
@@ -314,28 +311,104 @@ function renderKoszyk() {
 
 }
 
-// Przypisz globalnie, żeby można było wywołać na drugiej stronie
 window.renderKoszyk = renderKoszyk;
 
-// Przypisz funkcje globalnie
 window.getListaProduktow = getListaProduktow;
 window.renderKoszyk = renderKoszyk;
 
-// Po załadowaniu strony odczytaj koszyk i wyświetl go w SVG/HTML
 document.addEventListener('DOMContentLoaded', function() {
-    state = loadState();  // wczytaj stan z localStorage
-    renderKoszyk();       // odśwież koszyk w SVG
+    state = loadState();
+    renderKoszyk();       
 });
 
 
 
+document.getElementById('order-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
+    const form = e.target;
+    const formData = new FormData(form);
 
+    const flowers = [];
+    Object.entries(state.flowers).forEach(([id, qty]) => {
+        if (qty > 0) {
+            flowers.push({ id: parseInt(id), quantity: qty, icon: null });
+        }
+    });
 
+    const papers = [];
+    Object.entries(state.papers).forEach(([id, qty]) => {
+        if (qty > 0) {
+            papers.push({ id: parseInt(id), icon: null });
+        }
+    });
 
+    const ribbons = [];
+    Object.entries(state.ribbons).forEach(([id, qty]) => {
+        if (qty > 0) {
+            ribbons.push({ id: parseInt(id), icon: null });
+        }
+    });
 
+    const payload = {
+        pseudonim: formData.get('pseudonim'),
+        data: formData.get('data'),
+        godzina: formData.get('godzina'),
+        odbior: formData.get('odbior'),
+        platnosc: formData.get('platnosc'),
+        flowers: flowers,
+        papers: papers,
+        ribbons: ribbons,
+        visualization_id: null
+    };
 
+    try {
+        const res = await fetch(backendUrl + '/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
 
+        const data = await res.json();
 
+        if (!res.ok) {
+            throw new Error(data.detail || 'Coś poszło nie tak');
+        }
 
+        let summary = `Zamówienie #${data.order_id} złożone!\n\n`;
+        summary += `Klient: ${payload.pseudonim}\n`;
+        summary += `Data: ${payload.data} o ${payload.godzina}\n`;
+        summary += `Odbiór: ${payload.odbior}\n`;
+        summary += `Płatność: ${payload.platnosc}\n\n`;
+        summary += `Produkty:\n`;
+        
+        flowers.forEach(f => {
+            const name = state.flowersNames?.[f.id] || `Kwiat ${f.id}`;
+            summary += `- ${name} x${f.quantity}\n`;
+        });
+        
+        papers.forEach(p => {
+            const name = state.papersNames?.[p.id] || `Papier ${p.id}`;
+            summary += `- ${name}\n`;
+        });
+        
+        ribbons.forEach(r => {
+            const name = state.ribbonsNames?.[r.id] || `Wstążka ${r.id}`;
+            summary += `- ${name}\n`;
+        });
 
+        alert(summary);
+
+        const note = document.getElementById('form-note');
+        note.textContent = `Zamówienie utworzone. ID: ${data.order_id}`;
+        note.style.color = 'green';
+
+        form.reset();
+    } catch (err) {
+        const note = document.getElementById('form-note');
+        note.textContent = `Błąd: ${err.message}`;
+        note.style.color = 'red';
+    }
+});
