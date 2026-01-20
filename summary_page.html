@@ -71,7 +71,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 450px;
+                gap: 150px;
                 padding: 0px 40px 0px 40px; 
                 flex: 1;
                 
@@ -143,6 +143,32 @@
                 text-align: center;
             }
 
+            .gen {
+                width: 150px;
+                height: 30px;
+                border: none;
+                background-color: #e86b5c;
+                color: white;
+                font-size: 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-left: 50px;
+            }
+
+            .gen:hover {
+                background-color: #d45647;
+            }
+            
+            .background{
+                background: #ce9f9f;
+                padding: 30px;
+                border-radius: 10px;
+                border: 4px solid rebeccapurple;
+            }
+            
+
+            
+
         </style>
 
     </head>
@@ -186,7 +212,7 @@
 
 
       <main>
-        <section>
+        <section class="background">
             <h1>Twoje zamówienie</h1>
             
             <div id="order-summary">
@@ -205,9 +231,9 @@
             <button id="generate-btn" class="gen">Generuj</button>
         </section>
 
-        <section>
+        <section class="background">
             <h1>Obraz</h1>
-            <img id="bouquet-image" src="bialy.png" alt="Bukiet" width="400" height="500" style="border: 2px solid black;">
+            <img id="bouquet-image" src="bialy.png" alt="Twój obraz bukietu" width="400" height="500" style="border: 2px solid black;">
         </section>
     </main>
 
@@ -300,15 +326,16 @@
 
                     </a>
 
-                    <rect x="618" y="243" height="50" width="240" stroke="black" stroke-width="2" rx="10" ry="10"
+                    <rect x="620" y="245" height="50" width="260" stroke="black" stroke-width="2" rx="10" ry="10"
                         style="fill: white;">
                     </rect>
 
-                    <text x="650" y="280" font-size="25px" font-family="Pacifico">
+                    <text x="640" y="282" font-size="25px" font-family="Pacifico">
 
-                        <tspan id="total">Cała suma: 0 zł</tspan>
+                        <tspan id="total1">Cała suma: 0 zł</tspan>
 
                     </text>
+
 
                 </svg>
             </section>

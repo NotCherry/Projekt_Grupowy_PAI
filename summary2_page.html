@@ -71,7 +71,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 450px;
+                gap: 150px;
                 padding: 0px 40px 0px 40px; 
                 flex: 1;
                 
@@ -143,6 +143,29 @@
                 text-align: center;
             }
 
+            .gen {
+                width: 150px;
+                height: 30px;
+                border: none;
+                background-color: #e86b5c;
+                color: white;
+                font-size: 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-left: 50px;
+            }
+
+            .gen:hover {
+                background-color: #d45647;
+            }
+            
+            .background{
+                background: #ce9f9f;
+                padding: 30px;
+                border-radius: 10px;
+                border: 4px solid rebeccapurple;
+            }
+
         </style>
 
     </head>
@@ -188,15 +211,15 @@
         
         <main>
             
-            <section>
+            <section class="background">
                 <h1>Twoje zamówienie</h1>
-                <button>Losuj</button>
-                <button>Generuj</button>
+                <button class="gen">Losuj</button>
+                <button class="gen">Generuj</button>
             </section>
 
-            <section>
+            <section class="background">
                 <h1>Obraz</h1>
-                <img src="bialy.png" alt="Bukiet" width="400" height="500" style="border: 2px solid black; ">
+                <img src="bialy.png" alt="Twój obraz bukietu" width="400" height="500" style="border: 2px solid black; ">
             </section>
 
         </main>

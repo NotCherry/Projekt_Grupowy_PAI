@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             funkcjaLicznika: 'changeCount2'
         })
     ]);
+    
     restoreCounters();
 });
 
@@ -73,6 +74,19 @@ async function listujProdukty({endpoint, className, klasaKarty, funkcjaLicznika}
         
         produkty.forEach(produkt => {
             state.prices[produkt.id] = produkt.price;
+
+        // zapisz nazwy w state, żeby można było odczytać na innej stronie
+        if (klasaKarty === 'flower-card') {
+            state.flowersNames = state.flowersNames || {};
+            state.flowersNames[produkt.id] = produkt.name;
+        } else if (klasaKarty === 'flower-card2') {
+            state.papersNames = state.papersNames || {};
+            state.papersNames[produkt.id] = produkt.name;
+        } else if (klasaKarty === 'flower-card3') {
+            state.ribbonsNames = state.ribbonsNames || {};
+            state.ribbonsNames[produkt.id] = produkt.name;
+        }
+
             
             const szablon = document.createElement("template");
             const maxInfo = produkt.max_quantity > 0 ? `(max ${produkt.max_quantity})` : '';
@@ -94,6 +108,7 @@ async function listujProdukty({endpoint, className, klasaKarty, funkcjaLicznika}
             rodzic.appendChild(szablon.content.firstElementChild);
         });
         
+        renderKoszyk(); // <- wywołaj po dodaniu wszystkich produktów
         saveState();
     } catch (err) {
         console.error(`Loading error ${endpoint}:`, err);
@@ -113,7 +128,7 @@ function changeCount(button, delta) {
   
   updateCardDisplay(card, value);
   updateTotal();
-
+  renderKoszyk();
 
 }
 
@@ -136,6 +151,7 @@ function changeCount2(button, delta) {
   saveState();
   restoreCategoryView('flower-card2', state.papers);
   updateTotal();
+  renderKoszyk();
 }
 
 function changeCount3(button, delta) {
@@ -157,6 +173,7 @@ function changeCount3(button, delta) {
   saveState();
   restoreCategoryView('flower-card3', state.ribbons);
   updateTotal();
+  renderKoszyk();
 }
 
 function updateCardDisplay(card, value) {
@@ -211,9 +228,114 @@ function updateTotal() {
   if (totalEl) totalEl.textContent = `Cała suma: ${total.toFixed(2)} zł`;
 
   const totalEl2 = document.getElementById("total2");
-   if (totalEl) totalEl.textContent = `Cała suma: ${total.toFixed(2)} zł`;
+   if (totalEl2) totalEl2.textContent = `Cała suma: ${total.toFixed(2)} zł`;
 
 }
+
+
+function getListaProduktow() {
+  const lista = [];
+
+  document.querySelectorAll('.flower-card, .flower-card2, .flower-card3')
+    .forEach(card => {
+      const id = card.dataset.id;
+      const price = Number(card.dataset.price);
+      let name = 'Produkt';
+      if (card.classList.contains('flower-card')) name = state.flowersNames[id];
+      if (card.classList.contains('flower-card2')) name = state.papersNames[id];
+      if (card.classList.contains('flower-card3')) name = state.ribbonsNames[id];
+
+
+      let ilosc = 0;
+      if (card.classList.contains('flower-card')) ilosc = state.flowers[id] || 0;
+      if (card.classList.contains('flower-card2')) ilosc = state.papers[id] || 0;
+      if (card.classList.contains('flower-card3')) ilosc = state.ribbons[id] || 0;
+
+      if (ilosc > 0) {
+        lista.push({ id, name, ilosc, price });
+      }
+    });
+
+  return lista;
+
+  
+}
+
+function renderKoszyk() {
+    const textEl = document.getElementById("orderItems");
+    if (!textEl) return;
+
+    // Usuń stare <tspan>
+    while (textEl.firstChild) textEl.removeChild(textEl.firstChild);
+
+    const lista = [];
+
+    // odczyt z state wraz z nazwami produktów
+    Object.entries(state.flowers).forEach(([id, qty]) => {
+        if (qty > 0 && state.prices[id]) {
+            lista.push({ 
+                id, 
+                name: state.flowersNames?.[id] || `Produkt ${id}`, 
+                ilosc: qty, 
+                price: state.prices[id] 
+            });
+        }
+    });
+    Object.entries(state.papers).forEach(([id, qty]) => {
+        if (qty > 0 && state.prices[id]) {
+            lista.push({ 
+                id, 
+                name: state.papersNames?.[id] || `Produkt ${id}`, 
+                ilosc: qty, 
+                price: state.prices[id] 
+            });
+        }
+    });
+    Object.entries(state.ribbons).forEach(([id, qty]) => {
+        if (qty > 0 && state.prices[id]) {
+            lista.push({ 
+                id, 
+                name: state.ribbonsNames?.[id] || `Produkt ${id}`, 
+                ilosc: qty, 
+                price: state.prices[id] 
+            });
+        }
+    });
+
+
+    // Dodanie <tspan> do SVG
+    lista.forEach((p, i) => {
+        const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        tspan.setAttribute('x', '2010');          
+        tspan.setAttribute('dy', i === 0 ? '0' : '28'); 
+        tspan.textContent = `${p.name} x ${p.ilosc} = ${p.ilosc * p.price} zł`;
+        textEl.appendChild(tspan);
+    });
+
+}
+
+// Przypisz globalnie, żeby można było wywołać na drugiej stronie
+window.renderKoszyk = renderKoszyk;
+
+// Przypisz funkcje globalnie
+window.getListaProduktow = getListaProduktow;
+window.renderKoszyk = renderKoszyk;
+
+// Po załadowaniu strony odczytaj koszyk i wyświetl go w SVG/HTML
+document.addEventListener('DOMContentLoaded', function() {
+    state = loadState();  // wczytaj stan z localStorage
+    renderKoszyk();       // odśwież koszyk w SVG
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
