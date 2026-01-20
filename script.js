@@ -586,41 +586,36 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Ensure state.prices always exists
     state.prices = state.prices || {};
     
-    const hasFlowerList = document.getElementsByClassName('flower-list')[0];
-    const hasFoliageList = document.getElementsByClassName('foliage-list')[0];
+    await Promise.all([
+        listujProdukty({
+            endpoint: '/flowers', 
+            className: 'flower-list', 
+            klasaKarty: 'flower-card', 
+            funkcjaLicznika: 'changeCount'
+        }),
+        listujProdukty({
+            endpoint: '/foliage', 
+            className: 'foliage-list', 
+            klasaKarty: 'flower-card', 
+            funkcjaLicznika: 'changeCount'
+        }),
+        listujProdukty({
+            endpoint: '/ribbons', 
+            className: 'ribbons-list', 
+            klasaKarty: 'flower-card3', 
+            funkcjaLicznika: 'changeCount3'
+        }),
+        listujProdukty({
+            endpoint: '/papers', 
+            className: 'papers-list', 
+            klasaKarty: 'flower-card2', 
+            funkcjaLicznika: 'changeCount2'
+        })
+    ]);
     
-    if (hasFlowerList || hasFoliageList) {
-        // Wait for ALL listujProdukty calls to complete
-        await Promise.all([
-            listujProdukty({
-                endpoint: '/flowers', 
-                className: 'flower-list', 
-                klasaKarty: 'flower-card', 
-                funkcjaLicznika: 'changeCount'
-            }),
-            listujProdukty({
-                endpoint: '/foliage', 
-                className: 'foliage-list', 
-                klasaKarty: 'flower-card', 
-                funkcjaLicznika: 'changeCount'
-            }),
-            listujProdukty({
-                endpoint: '/ribbons', 
-                className: 'ribbons-list', 
-                klasaKarty: 'flower-card3', 
-                funkcjaLicznika: 'changeCount3'
-            }),
-            listujProdukty({
-                endpoint: '/papers', 
-                className: 'papers-list', 
-                klasaKarty: 'flower-card2', 
-                funkcjaLicznika: 'changeCount2'
-            })
-        ]);
-        
-        state = loadState();
-        restoreCounters();
-    }
+    state = loadState();
+    restoreCounters();
+
     
     await ladujProdukty();
     aktualizujListeZamowienia();
