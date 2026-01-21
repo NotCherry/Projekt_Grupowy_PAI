@@ -1,3 +1,8 @@
+/**
+ * @file formularz.js
+ * @brief Skrypt walidacji formularza
+ * @details Obsługuje walidacje formularza
+ */
 
 const dateInput = document.getElementById("date-picker");
 const timeInput = document.getElementById("time-picker");
@@ -8,6 +13,7 @@ const today = now.toISOString().split("T")[0];
 
 dateInput.min = today;
 
+/** @brief Ustawia minimalną możliwą godzinę w polu czasu i wywołuje walidację czasu.*/
 function updateMinTime() {
   const selectedDate = dateInput.value;
 
@@ -19,10 +25,11 @@ function updateMinTime() {
     timeInput.min = "00:00";
   }
 
+/** @brief wywołanie walidacji czasu */
   validateTime();
 }
 
-//godziny
+/** @brief Sprawdza poprawność wybranej godziny oraz w przypadku błędu wyświetla komunikat i czyści pole czasu.*/
 function validateTime() {
   note.textContent = ""; 
 
@@ -31,7 +38,7 @@ function validateTime() {
 
   if (!selectedTime) return;
 
-  //Blokada nocna: 20:00–08:00 
+/** @brief Blokada nocna: 20:00–08:00 */
   const [hour] = selectedTime.split(":").map(Number);
 
   if (hour >= 20 || hour < 8) {
@@ -40,7 +47,7 @@ function validateTime() {
     return;
   }
 
-  //Blokada czasu z przeszslosci (tylko jeśli dziś)
+/** @brief Blokada czasu z przeszslosci (tylko jeśli dziś) */
   if (selectedDate === today) {
     const currentTime = now.toTimeString().slice(0,5);
 
@@ -52,7 +59,9 @@ function validateTime() {
   }
 }
 
+/** @brief Nasłuchiwanie zdarzeń - reaguje na zmianę daty i godziny*/
 dateInput.addEventListener("change", updateMinTime);
 timeInput.addEventListener("change", validateTime);
 
+/** @brief Ustawia poprawne limity od razu po załadowaniu strony.*/
 updateMinTime();
